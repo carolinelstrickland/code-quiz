@@ -1,11 +1,6 @@
 *, *::before, *::after {
     box-sizing: border;
-    font-family: 'Bebas Neue', cursive;}
-
-:root {
-    --hue-neutral: 200;
-    --hue-wrong: 0;
-    --hue-correct: 145;
+    font-family: 'Bebas Neue', cursive;
 }
 
 body {
@@ -20,7 +15,7 @@ body {
 }
 
 .container {
-    width: 800px;
+    width: 500px;
     max-width: 80%;
     background-color: cornflowerblue;
     color: white;
@@ -49,4 +44,24 @@ body {
 
 .btn:hover {
     border-color: white;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+.hide {
+    display: none;
+}
+
+#start-btn {
+    font-size: larger;
+    font-weight: bolder;
+    padding: 50px;
+} 
+
+#time-left {
+    text-align: right;
 }

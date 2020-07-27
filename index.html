@@ -7,22 +7,23 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <script src='main.js'></script>
 </head>
 <body>
     <div class = "container">
+        <div id= "time-left" class = "hide">Time Left: <span id="time">0</span></div>
         <div id = "question-container" class = "hide">
-            <div id="question">Question 1</div>
-            <div id= "answer-buttons" class= "btn-grid">
-                <button class="btn">A</button>
-                <button class="btn">B</button>
-                <button class="btn">C</button>
-                <button class="btn">D</button>
-            </div>
+                <div id="questions">Question</div>
+                <div id= "answer-buttons" class= "btn-grid">
+                    <button class="btn">A</button>
+                    <button class="btn">B</button>
+                    <button class="btn">C</button>
+                    <button class="btn">D</button>
+                </div>
         </div>
-        <div class = "controls">
-            <button id = "start-btn" class = "start-btn btn">Start Quiz</button>
+        <div class = "button">
+            <button id = "start-btn">Start Quiz</button>
         </div>
+    </div>
+    <script src="script.js"></script>
 </body>
-<script>src="script.js"</script>
 </html>
