@@ -60,6 +60,9 @@ body {
     font-size: larger;
     font-weight: bolder;
     padding: 50px;
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightseagreen;
 } 
 
 #time-left {
