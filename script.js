@@ -1,10 +1,19 @@
 let startButton = document.getElementById("start-btn");
 let timeLeft = document.getElementById("time-left");
 let questionCountainerEl = document.getElementById("question-container");
-let seconds = "Time Left : " + 75;
+let seconds = 75;
 let questionsEl = document.getElementById("questions");
 let answerButtonsEl = document.getElementById("answer-buttons");
-let shuffledQuestions, currentQuestionIndex
+const btnA = document.getElementById("btn-a")
+const btnB = document.getElementById("btn-b")
+const btnC = document.getElementById("btn-c")
+const btnD = document.getElementById("btn-d")
+let userAnswer = "";
+let correctAnswer = "";
+let currentQuestionIndex = 0;
+let wrongAnswers = 0;
+let rightAnswers = 0;
+let interval
 
 startButton.addEventListener("click", startQuiz);
 
@@ -13,77 +22,88 @@ function startQuiz() {
     startButton.classList.add("hide");
     timeLeft.classList.remove("hide");
     shuffledQuestions = questions.sort(() => Math.random() - .5);
-    currentQuestionIndex = 0;
-    timeLeft.textContent = seconds;
-    questionCountainerEl.classList.remove("hide");
-    setNextQuestion()
-}
+    questionCountainerEl.classList.remove("hide"); 
+    startTimer();
+    askQuestions();
+};
 
-function setNextQuestion() {
-    resetQuestion()
-    displayQuestion(shuffledQuestions[currentQuestionIndex]);
-}
+function startTimer() {
+    interval = setInterval(() => {
+        timeLeft.textContent = seconds;
+    if (seconds < 0) {
+        clearInterval(interval)
 
-function displayQuestion(question) {
-    questionsEl.innerHTML = question.question;
-    question.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener("click", selectAnswer);
-        answerButtonsEl.appendChild(button);
-    })
-}
-
-function resetQuestion() {
-    while (answerButtonsEl.firstChild) {
-        answerButtonsEl.removeChild(answerButtonsEl.firstChild)
     }
-}
+    else {
+        seconds--
+    }
+    }, 1000);
+};
 
-function selectAnswer(e) {
-    const grabSelection = e.target;
-    const correct = chosenButton.dataset.correct;
-    setStatusClass(document.body, correct);
-    Array.from(answerButtonsEl.children).forEach(buttons => {
-        setStatusClass(button, button.dataset.correct)
-    })
-}
+function checkAnswer() {
+    if (userAnswer === correctAnswer) {
+        rightAnswers++
+        console.log("Right answer")
+        console.log(rightAnswers)
+    }
+    else {
+        wrongAnswers++
+        console.log("Wrong answer")
+        console.log(wrongAnswers)
+        seconds-=10;
+    }
+    currentQuestionIndex++
+    askQuestions();
+};
+
+function addEvent(e) {
+e.preventDefault()
+userAnswer = e.target.textContent;
+checkAnswer();
+};
+
+function askQuestions() {
+    console.log(currentQuestionIndex);
+    if (currentQuestionIndex < questions.length) {
+        correctAnswer = questions[currentQuestionIndex].answer;
+        questionsEl.textContent = questions[currentQuestionIndex].question;
+        btnA.textContent = questions[currentQuestionIndex].answers[0];
+        btnB.textContent = questions[currentQuestionIndex].answers[1];
+        btnC.textContent = questions[currentQuestionIndex].answers[2];
+        btnD.textContent = questions[currentQuestionIndex].answers[3];
+    }
+    else {console.log("Game Over")};
+};
+
+btnA.addEventListener("click", addEvent);
+btnB.addEventListener("click", addEvent);
+btnC.addEventListener("click", addEvent);
+btnD.addEventListener("click", addEvent);
+
+
+
 
 let questions = [
     {
         question: "Who is not a member of The Beatles?",
-        answers: [
-            {text: "Ringo Starr", correct: false },
-            {text: "Mick Jagger", correct: true },
-            {text: "George Harrison", correct: false },
-            {text: "Paul McCartney", correct: false},
-        ]
+        answers: ["Ringo Starr", "Mick Jagger", "George Harrison", "Paul McCartney"],
+        answer: "Mick Jagger"
     },
     {
         question: "Which artist belongs to the Post-Impressionist movement?",
-        answers: [
-            {text: "Georges Seurat", correct: true},
-            {text: "Jan van Eyck", correct: false},
-            {text: "Johannes Vermeer", correct: false},
-            {text: "Pierre-Auguste Renoir", correct: false},
-        ]
+        answers: ["Georges Seurat","Jan van Eyck", "Johannes Vermeer","Pierre-Auguste Renoir"],
+        answer: "Georges Seurat"
     },
     {
         question: "Which of the following jazz musicians is not a trumpeteer?",
-        answers: [
-            {text: "Louis Armstrong", correct: false},
-            {text: "Miles Davis", correct: false},
-            {text: "Dizzy Gillespie", correct: false},
-            {text: "Charlie Parker", correct: true},
-        ]
+        answers: ["Louis Armstrong", "Miles Davis", "Dizzy Gillespie", "Charlie Parker"],
+        answer: "Charlie Parker"
     },
     {
-        question: ""
-    }
-]
+        question: "What is the tallest sculpture in the world?",
+        answers: ["Peter the Great Statue - Moscow, Russia", "Christ the Redeemer - Rio de Janeiro, Brazil", "Statue of Liberty - Manhattan, NY, USA", "Statue of Unity - Gujarat, India"],
+        answer: "Statue of Unity - Gujarat, India"
+    },
+];
 
 
