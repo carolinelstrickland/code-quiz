@@ -1,9 +1,8 @@
 let startButton = document.getElementById("start-btn");
 let submitButton = document.getElementById("submit-btn");
-let nameInput = document.getElementById("highscorer-name");
-let highscoreContainerEl = document.getElementById("score-container");
-let highscoreLog = document.getElementById("highscore-log");
+let nameContainerEl = document.getElementById("score-container");
 let timeLeft = document.getElementById("time-left");
+let highscoreContainerEl = document.getElementById("total-score");
 let questionCountainerEl = document.getElementById("question-container");
 let seconds = 45;
 let questionsEl = document.getElementById("questions");
@@ -18,12 +17,14 @@ let currentQuestionIndex = 0;
 let wrongAnswers = 0;
 let rightAnswers = 0;
 let interval
+let scores
 
 startButton.addEventListener("click", startQuiz);
 
 function startQuiz() {
     startButton.classList.add("hide");
     timeLeft.classList.remove("hide");
+    questionCountainerEl.classList.add("hide");
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     questionCountainerEl.classList.remove("hide"); 
     startTimer();
@@ -93,14 +94,29 @@ btnD.addEventListener("click", addEvent);
 
 function endGame() {
     questionCountainerEl.classList.add("hide");
-    submitButton.classList.remove("hide");
-    nameInput.classList.remove("hide");
+    submitButton.classList.add("hide");
+    nameContainerEl.classList.remove("hide");
     highscoreContainerEl.classList.remove("hide");
-    highscoreLog.classList.remove("hide");
-    
-
-
 }
+
+function highscore() {
+    let scorerName = document.getElementById("name");
+    let pastScores = localStorage.getItem("scores");
+    if (pastScores) {
+        scores = JSON.parse(pastScores);
+    } else scores = [];
+    scores.push({name: scorerName, score: currentScore});
+    localStorage.setItem("scores", JSON.stringify(scores));
+    let highscoreLog = document.getElementById("highest-scorers");
+    highscoreLog.innerHTML = "";
+    for (let prop of scores) {
+        highscoreLog.innerHTML += "<li>" + propr.name + "" + prop.score + "</li>";
+        console.log(prop);
+    }
+    highscoreContainerEl.style.display = "none";
+    totalCon.style.display = "block";
+}
+
 
 
 

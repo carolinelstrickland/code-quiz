@@ -26,6 +26,18 @@ body {
     border-width: 5px;
 }
 
+.score-container {
+    width: 500px;
+    max-width: 80%;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: solid;
+    border-color: lightseagreen;
+    border-width: 5px;  
+}
+
 .btn-grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -50,7 +62,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
 
 .hide {
     display: none;
@@ -74,6 +86,15 @@ body {
     border-color: lightseagreen;
 }
 
+#reset-btn {
+    font-size: larger;
+    font-weight: bolder;
+    padding: 50px;
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightseagreen;
+}
+
 #time-left {
     text-align: right;
 }
@@ -84,4 +105,13 @@ body {
     text-align: center;
     margin: auto;
     justify-content: center;
+}
+
+#clear-btn {
+    font-size: larger;
+    font-weight: bolder;
+    padding: 50px;
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightseagreen; 
 }
