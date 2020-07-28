@@ -1,4 +1,8 @@
 let startButton = document.getElementById("start-btn");
+let submitButton = document.getElementById("submit-btn");
+let nameInput = document.getElementById("highscorer-name");
+let highscoreContainerEl = document.getElementById("score-container");
+let highscoreLog = document.getElementById("highscore-log");
 let timeLeft = document.getElementById("time-left");
 let questionCountainerEl = document.getElementById("question-container");
 let seconds = 45;
@@ -89,6 +93,13 @@ btnD.addEventListener("click", addEvent);
 
 function endGame() {
     questionCountainerEl.classList.add("hide");
+    submitButton.classList.remove("hide");
+    nameInput.classList.remove("hide");
+    highscoreContainerEl.classList.remove("hide");
+    highscoreLog.classList.remove("hide");
+    
+
+
 }
 
 

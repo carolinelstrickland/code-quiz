@@ -65,6 +65,23 @@ body {
     border-color: lightseagreen;
 } 
 
+#submit-btn {
+    font-size: larger;
+    font-weight: bolder;
+    padding: 50px;
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightseagreen;
+}
+
 #time-left {
     text-align: right;
+}
+
+#highscorer-name {
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
 }
