@@ -5,6 +5,7 @@ let timeLeft = document.getElementById("time-left");
 let highscoreContainerEl = document.getElementById("total-score");
 let questionCountainerEl = document.getElementById("question-container");
 let seconds = 45;
+let nameSubmission = document.getElementById("name");
 let questionsEl = document.getElementById("questions");
 let answerButtonsEl = document.getElementById("answer-buttons");
 const btnA = document.getElementById("btn-a")
@@ -18,6 +19,7 @@ let wrongAnswers = 0;
 let rightAnswers = 0;
 let interval
 let scores
+let currentScore = 0;
 
 startButton.addEventListener("click", startQuiz);
 
@@ -94,9 +96,9 @@ btnD.addEventListener("click", addEvent);
 
 function endGame() {
     questionCountainerEl.classList.add("hide");
-    submitButton.classList.add("hide");
+    submitButton.classList.remove("hide");
     nameContainerEl.classList.remove("hide");
-    highscoreContainerEl.classList.remove("hide");
+    nameSubmission.classList.remove("hide");
 }
 
 function highscore() {
@@ -110,11 +112,11 @@ function highscore() {
     let highscoreLog = document.getElementById("highest-scorers");
     highscoreLog.innerHTML = "";
     for (let prop of scores) {
-        highscoreLog.innerHTML += "<li>" + propr.name + "" + prop.score + "</li>";
+        highscoreLog.innerHTML += "<li>" + prop.name + "" + prop.score + "</li>";
         console.log(prop);
     }
-    highscoreContainerEl.style.display = "none";
-    totalCon.style.display = "block";
+    nameContainerEl.style.display = "none";
+    highscoreContainerEl.style.display = "block";
 }
 
 
