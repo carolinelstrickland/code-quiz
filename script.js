@@ -4,6 +4,7 @@ let nameContainerEl = document.getElementById("score-container");
 let timeLeft = document.getElementById("time-left");
 let highscoreContainerEl = document.getElementById("total-score");
 let questionCountainerEl = document.getElementById("question-container");
+let highscoreLog = document.getElementById("highest-scorers");
 let seconds = 45;
 let nameSubmission = document.getElementById("name");
 let questionsEl = document.getElementById("questions");
@@ -109,14 +110,23 @@ function highscore() {
     } else scores = [];
     scores.push({name: scorerName, score: currentScore});
     localStorage.setItem("scores", JSON.stringify(scores));
-    let highscoreLog = document.getElementById("highest-scorers");
     highscoreLog.innerHTML = "";
     for (let prop of scores) {
-        highscoreLog.innerHTML += "<li>" + prop.name + "" + prop.score + "</li>";
+        highscoreLog.innerHTML += "<li>" + prop.nameSubmission + "" + prop.score + "</li>";
         console.log(prop);
     }
     nameContainerEl.style.display = "none";
     highscoreContainerEl.style.display = "block";
+}
+
+function clearHighscore() {
+    localStorage.removeItem("scores");
+    scores = [];
+    highscoreLog.innerHTML = "";
+}
+
+function resetGame() {
+    
 }
 
 
