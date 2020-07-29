@@ -5,6 +5,7 @@ let timeLeft = document.getElementById("time-left");
 let highscoreContainerEl = document.getElementById("total-score");
 let questionCountainerEl = document.getElementById("question-container");
 let highscoreLog = document.getElementById("highest-scorers");
+let scorerName = document.getElementById("name");
 let seconds = 45;
 let nameSubmission = document.getElementById("name");
 let questionsEl = document.getElementById("questions");
@@ -19,7 +20,6 @@ let currentQuestionIndex = 0;
 let wrongAnswers = 0;
 let rightAnswers = 0;
 let interval
-let scores
 let currentScore = 0;
 
 startButton.addEventListener("click", startQuiz);
@@ -102,21 +102,22 @@ function endGame() {
     nameSubmission.classList.remove("hide");
 }
 
-function highscore() {
-    let scorerName = document.getElementById("name");
-    let pastScores = localStorage.getItem("scores");
-    if (pastScores) {
-        scores = JSON.parse(pastScores);
-    } else scores = [];
-    scores.push({name: scorerName, score: currentScore});
-    localStorage.setItem("scores", JSON.stringify(scores));
-    highscoreLog.innerHTML = "";
-    for (let prop of scores) {
-        highscoreLog.innerHTML += "<li>" + prop.nameSubmission + "" + prop.score + "</li>";
-        console.log(prop);
-    }
-    nameContainerEl.style.display = "none";
-    highscoreContainerEl.style.display = "block";
+function grabHighscore() {
+    let name = scorerName.value.trim();
+    console.log(name);
+    console.log(seconds);
+    let highscore = {name: name, score: seconds}
+    let highscores = [];
+    if (localStorage.getItem("highscores")) {
+        highscores = localStorage.getItem("highscores")
+    } else {highscores = [] }
+    highscores.push(highscore)
+    localStorage.setItem("highscores", JSON.stringify(highscores))
+    displayHighscore();
+}
+
+function displayHighscore() {
+console.log(localStorage.getItem("highscores"))
 }
 
 function clearHighscore() {
@@ -126,7 +127,7 @@ function clearHighscore() {
 }
 
 function resetGame() {
-    
+
 }
 
 
