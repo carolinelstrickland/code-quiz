@@ -107,10 +107,11 @@ function grabHighscore() {
     console.log(name);
     console.log(seconds);
     let highscore = {name: name, score: seconds}
-    let highscores = [];
+    let highscores = new Array();
     if (localStorage.getItem("highscores")) {
-        highscores = localStorage.getItem("highscores")
-    } else {highscores = [] }
+        highscores = JSON.parse(localStorage.getItem("highscores"))
+    } // else {highscores = [] }
+    console.log(typeof highscores)
     highscores.push(highscore)
     localStorage.setItem("highscores", JSON.stringify(highscores))
     displayHighscore();
@@ -118,15 +119,24 @@ function grabHighscore() {
 
 function displayHighscore() {
 console.log(localStorage.getItem("highscores"))
+highscoreContainerEl.classList.remove("hide");
+nameContainerEl.classList.add("hide");
+let scores = JSON.parse(localStorage.getItem("highscores"))
+console.log(scores)
+    for (let i = 0; i < scores.length ;i++){
+        let hsElement = document.createElement("li")
+        hsElement.textContent = scores[i].name + ": " + scores[i].score
+        highscoreLog.appendChild(hsElement)
+    } 
 }
 
 function clearHighscore() {
-    localStorage.removeItem("scores");
+    localStorage.removeItem("highscores");
     scores = [];
     highscoreLog.innerHTML = "";
 }
 
-function resetGame() {
+function resetQuiz() {
 
 }
 
