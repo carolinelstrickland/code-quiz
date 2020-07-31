@@ -137,7 +137,7 @@ function clearHighscore() {
 }
 
 function resetQuiz() {
-
+    window.location.reload();
 }
 
 
